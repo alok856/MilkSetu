@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MilkSetu - Empowering Rural Milk Delivery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <style>
+    #map {
+      height: 300px;
+      width: 100%;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-blue-50 text-gray-800">
+  <header class="text-center bg-green-600 text-white py-6 shadow-lg">
+    <h1 class="text-4xl font-bold">MilkSetu</h1>
+    <p class="text-lg">Connecting Villages with Freshness</p>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Client Card -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold mb-4">Client</h2>
+        <input class="border p-2 rounded w-full mb-3" type="text" placeholder="Search milk...">
+        <button class="bg-green-500 text-white px-4 py-2 rounded w-full">Subscribe</button>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="email" placeholder="Email">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded">Login</button>
+        </div>
+      </div>
+
+      <!-- Seller Card -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold mb-4">Seller</h2>
+        <input class="border p-2 rounded w-full mb-2" type="number" placeholder="Milk Quantity (L)">
+        <input class="border p-2 rounded w-full mb-2" type="text" placeholder="Price per Litre">
+        <button class="bg-green-500 text-white px-4 py-2 rounded w-full">Update</button>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="text" placeholder="Phone">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded">Login</button>
+        </div>
+      </div>
+
+      <!-- Transporter Card -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold mb-4">Transporter</h2>
+        <div class="grid grid-cols-2 gap-2 mb-4">
+          <input class="border p-2 rounded" type="text" id="from" placeholder="From">
+          <input class="border p-2 rounded" type="text" id="to" placeholder="To">
+        </div>
+        <button onclick="drawRoute()" class="bg-green-500 text-white px-4 py-2 rounded w-full">Show Route</button>
+        <div id="map" class="mt-4"></div>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="text" placeholder="ID">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded">Login</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Chatbot Icon -->
+  <div class="fixed bottom-6 right-6">
+    <button onclick="alert('Chatbot coming soon...')" class="bg-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-700">
+      💬 Chatbot
+    </button>
+  </div>
+
+  <footer class="text-center py-4 text-sm bg-green-100 mt-8">
+    Developed by Alok | &copy; 2025 MilkSetu
+  </footer>
+
+  <script>
+    let map;
+    let directionsService;
+    let directionsRenderer;
+
+    function initMap() {
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: { lat: 25.5, lng: 85.3 },
+      });
+      directionsRenderer.setMap(map);
+    }
+
+    function drawRoute() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      if (!from || !to) return alert("Please enter both locations");
+
+      directionsService.route({
+        origin: from,
+        destination: to,
+        travelMode: google.maps.TravelMode.DRIVING,
+      }, (result, status) => {
+        if (status === "OK") {
+          directionsRenderer.setDirections(result);
+        } else {
+          alert("Directions failed: " + status);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

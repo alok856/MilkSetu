@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MilkSetu - Connecting Villages with Freshness</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fffde7, #e0f7fa);
+      color: #2e7d32;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(90deg, #a5d6a7, #81d4fa);
+      color: white;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    .tabs {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .tab-buttons button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 30px;
+      background-color: #b2ebf2;
+      transition: 0.3s;
+      color: #00695c;
+      flex: 1;
+      min-width: 120px;
+    }
+    .tab-buttons button.active {
+      background-color: #00796b;
+      color: white;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    input, textarea, button, select {
+      display: block;
+      width: 100%;
+      margin: 0.8rem 0;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button.submit-btn {
+      background-color: #4db6ac;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button.submit-btn:hover {
+      background-color: #00796b;
+    }
+    .login-form {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #f1f8e9;
+      border-radius: 12px;
+    }
+    .map-section {
+      margin-top: 1.5rem;
+    }
+    .map-section iframe {
+      width: 100%;
+      height: 350px;
+      border: none;
+      border-radius: 12px;
+    }
+    .from-to-fields {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .from-to-fields input {
+      flex: 1;
+      min-width: 120px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0f2f1;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .tab-buttons button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+      input, textarea, button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MilkSetu</h1>
+    <p>Connecting Villages with Freshness</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="client">Client</button>
+      <button class="tab-btn" data-tab="seller">Seller</button>
+      <button class="tab-btn" data-tab="transporter">Transporter</button>
+    </div>
+
+    <!-- Client Section -->
+    <div id="client" class="tab-content active">
+      <h2>Client Dashboard</h2>
+      <input type="text" placeholder="Search for milk or products...">
+      <button class="submit-btn">Subscribe Milk</button>
+      <button class="submit-btn">Track Order</button>
+      <textarea placeholder="Give feedback or request..."></textarea>
+      <div class="login-form">
+        <h3>Client Login / Sign Up</h3>
+        <input type="text" placeholder="Email or Phone">
+        <input type="password" placeholder="Password">
+        <button class="submit-btn">Login</button>
+        <button class="submit-btn">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- Seller Section -->
+    <div id="seller" class="tab-content">
+      <h2>Seller Dashboard</h2>
+      <input type="text" placeholder="Enter today's milk quantity (L)">
+      <input type="text" placeholder="Set price per litre (INR)">
+      <button class="submit-btn">Update Availability</button>
+      <textarea placeholder="Notes / Special Instructions"></textarea>
+      <div class="login-form">
+        <h3>Seller Login / Sign Up</h3>
+        <input type="text" placeholder="Mobile Number">
+        <input type="password" placeholder="Password">
+        <button class="submit-btn">Login</button>
+        <button class="submit-btn">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- Transporter Section -->
+    <div id="transporter" class="tab-content">
+      <h2>Transporter Dashboard</h2>
+      <button class="submit-btn">View Pickup List</button>
+      <button class="submit-btn">Mark Delivery Complete</button>
+      <textarea placeholder="Notes or issues during delivery"></textarea>
+      <div class="login-form">
+        <h3>Transporter Login / Sign Up</h3>
+        <input type="text" placeholder="ID / Email">
+        <input type="password" placeholder="Password">
+        <button class="submit-btn">Login</button>
+        <button class="submit-btn">Sign Up</button>
+      </div>
+      <div class="map-section">
+        <h3>Delivery Route</h3>
+        <div class="from-to-fields">
+          <input type="text" placeholder="From (e.g. Village A)">
+          <input type="text" placeholder="To (e.g. City B)">
+        </div>
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14694.395709274292!2d85.324!3d25.594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1614093021230!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+    ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 MilkSetu. Empowering Rural India. <br>
+    Developed by Alok
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
