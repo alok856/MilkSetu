@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MilkSetu - Empowering Rural Milk Delivery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <style>
+    #map {
+      height: 300px;
+      width: 100%;
+      border-radius: 1rem;
+    }
+    body{
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-white to-blue-50 text-gray-800">
+  <!-- Header / Hero Section -->
+  <header class="text-center py-10 bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-xl">
+    <h1 class="text-5xl font-extrabold tracking-tight animate-bounce">Milk<span class="italic">Setu</span></h1>
+    <p class="mt-2 text-lg">Connecting Villages with Freshness</p>
+    <button class="mt-4 px-6 py-2 bg-white text-green-700 font-semibold rounded-full shadow hover:scale-105 transition">Get Started</button>
+  </header>
+
+  <!-- Feature Highlights -->
+  <section class="max-w-6xl mx-auto my-12 px-4">
+    <h2 class="text-center text-3xl font-bold mb-8">Key Features</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img src="https://media.istockphoto.com/id/2128443594/video/happy-young-woman-pouring-raw-milk-into-canister-on-grassy-field-near-cattle-at-sunset.jpg?s=640x640&k=20&c=RPLTd5k0bp-2cIAPLJCimFfBU-MZpE3mh1J_rjQJNGs=" class="mx-auto mb-2"/>
+        <p class="font-semibold">Fresh Village Milk</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/048/854/641/small/modern-smartphone-navigation-concept-on-digital-map-with-real-time-gps-tracking-photo.jpeg" class="mx-auto mb-2"/>
+        <p class="font-semibold">Live Route Tracking</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img src="https://img.freepik.com/premium-vector/247-service-abstract-concept-vector-illustration_107173-24857.jpg" class="mx-auto mb-2"/>
+        <p class="font-semibold">24x7 Chatbot Support</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/024/867/097/small_2x/online-financial-transactions-and-payment-successful-closeup-of-hand-using-a-laptop-for-online-banking-login-to-pay-online-photo.jpg" class="mx-auto mb-2"/>
+        <p class="font-semibold">Secure Payments</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tabs Section -->
+  <div class="max-w-5xl mx-auto p-4">
+    <div class="flex justify-center space-x-4 mb-6">
+      <button class="tab-btn px-4 py-2 rounded-full bg-green-200 text-green-900 font-semibold active" data-tab="client">Client</button>
+      <button class="tab-btn px-4 py-2 rounded-full bg-green-100 text-green-800 font-semibold" data-tab="seller">Seller</button>
+      <button class="tab-btn px-4 py-2 rounded-full bg-green-100 text-green-800 font-semibold" data-tab="transporter">Transporter</button>
+    </div>
+
+    <div id="client" class="tab-content">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold mb-4">Client Portal</h2>
+        <input class="border p-2 rounded w-full mb-3" type="text" placeholder="Search milk...">
+        <button class="bg-green-600 text-white px-4 py-2 rounded w-full">Subscribe</button>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="email" placeholder="Email">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded" onclick="login('Client')">Login</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="seller" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold mb-4">Seller Portal</h2>
+        <input class="border p-2 rounded w-full mb-2" type="number" placeholder="Milk Quantity (L)">
+        <input class="border p-2 rounded w-full mb-2" type="text" placeholder="Price per Litre">
+        <button class="bg-green-600 text-white px-4 py-2 rounded w-full">Update</button>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="text" placeholder="Phone">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded" onclick="login('Seller')">Login</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="transporter" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold mb-4">Transporter Portal</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+          <input class="border p-2 rounded" type="text" id="from" placeholder="From">
+          <input class="border p-2 rounded" type="text" id="to" placeholder="To">
+        </div>
+        <button onclick="drawRoute()" class="bg-green-600 text-white px-4 py-2 rounded w-full">Show Route</button>
+        <div id="map" class="mt-4"></div>
+        <div class="mt-4">
+          <h3 class="font-medium">Login / Sign Up</h3>
+          <input class="border p-2 rounded w-full mb-2" type="text" placeholder="ID">
+          <input class="border p-2 rounded w-full mb-2" type="password" placeholder="Password">
+          <button class="bg-blue-500 text-white w-full py-2 rounded" onclick="login('Transporter')">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chatbot Icon -->
+  <div class="fixed bottom-6 right-6">
+    <button onclick="chatComingSoon()" class="bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 animate-bounce">💬</button>
+  </div>
+
+  <footer class="text-center py-4 text-sm bg-green-100 mt-12">
+    Developed by Alok | &copy; 2025 MilkSetu
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('bg-green-200', 'text-green-900', 'active'));
+        tab.classList.add('bg-green-200', 'text-green-900', 'active');
+        contents.forEach(content => content.classList.add('hidden'));
+        document.getElementById(tab.dataset.tab).classList.remove('hidden');
+      });
+    });
+
+    function login(role) {
+      Swal.fire({
+        icon: 'success',
+        title: role + ' Login Successful',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+
+    function chatComingSoon() {
+      Swal.fire({
+        title: 'Coming Soon!',
+        text: 'Chatbot feature will be live soon. Stay tuned!',
+        icon: 'info',
+        confirmButtonText: 'Okay!'
+      });
+    }
+
+    let map;
+    let directionsService;
+    let directionsRenderer;
+
+    function initMap() {
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: { lat: 25.5, lng: 85.3 },
+      });
+      directionsRenderer.setMap(map);
+    }
+
+    function drawRoute() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      if (!from || !to) return alert("Please enter both locations");
+
+      directionsService.route({
+        origin: from,
+        destination: to,
+        travelMode: google.maps.TravelMode.DRIVING,
+      }, (result, status) => {
+        if (status === "OK") {
+          directionsRenderer.setDirections(result);
+        } else {
+          alert("Directions failed: " + status);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
