@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code-Wave | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    nav { background: linear-gradient(to right, #0f172a, #2563eb); color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 10px; }
+    .hero { position: relative; height: 500px; overflow: hidden; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero img { position: absolute; width: 100%; height: 500px; object-fit: cover; opacity: 0; transition: opacity 1s; }
+    .hero img.active { opacity: 1; }
+    .hero-content { position: relative; z-index: 1; background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px; }
+    .hero-content h1 { font-size: 3em; letter-spacing: 2px; opacity: 0.9; }
+    .hero-content p { font-size: 1.2em; opacity: 0.8; }
+
+    footer { background: #0f172a; color: white; text-align: center; padding: 20px; }
+    footer p { margin: 5px; }
+    .social a { margin: 0 10px; color: white; text-decoration: none; }
+    .social a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>🚀 Code-Wave</div>
+  <div>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="https://bditinst.in/wp-content/uploads/2022/07/fullstack.jpg" class="active" alt="Hero 1">
+  <img src="https://www.shutterstock.com/shutterstock/videos/3399770455/thumb/11.jpg?ip=x480" alt="Hero 2">
+  <img src="https://t4.ftcdn.net/jpg/07/27/27/29/360_F_727272961_CK1r3YSfOwxIHctzKOi10C2TuKtZaVNF.jpg" alt="Hero 3">
+  <img src="https://c8.alamy.com/comp/2HFHKF8/java-programming-language-and-web-development-concept-on-virtual-screen-2HFHKF8.jpg" alt="Hero 4">
+  <img src="https://lh3.googleusercontent.com/proxy/W0j9cbjYbdZWPCIAJ45Pnt-ItMxA9D8TA_COCFa1dBBQJxudI8Dq2RBZT9DuETSHWHRzV14goS5ElIi_PlBLb5uVSrTtsxNMn0JYoEGzaxAIsfO56It-gKk" alt="Hero 5">
+
+  <div class="hero-content">
+    <h1>Welcome to Code-Wave</h1>
+    <p>Empowering future tech leaders with hands-on courses and a community-driven learning experience.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Code-Wave | Developed with ❤️</p>
+  <p>📍 Bihar, India | 📧 info@codewave.com | 📞 +91-9876543210</p>
+  <div class="social">
+    <a href="https://www.facebook.com/share/1VUeEzD6YT/">Facebook</a> | 
+    <a href="https://www.instagram.com/aarav_alok86?igsh=MTBqeGwzOHRvdnkzeQ==">Instagram</a> | 
+    <a href="https://www.linkedin.com/in/alok-kumar-785762295">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  let images = document.querySelectorAll(".hero img");
+  let index = 0;
+  setInterval(() => {
+    images[index].classList.remove("active");
+    index = (index + 1) % images.length;
+    images[index].classList.add("active");
+  }, 3000);
+</script>
+
+</body>
+</html>

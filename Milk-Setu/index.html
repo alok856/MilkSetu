@@ -2,23 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MilkSetu – Empowering Rural India</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      overflow-x: hidden;
-    }
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
     @keyframes scroll-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-100%); }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-800 overflow-x-hidden">
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-800">
 
   <!-- Info Ticker -->
   <div class="bg-gradient-to-r from-indigo-800 via-blue-800 to-purple-900 text-yellow-300 flex items-center overflow-hidden relative">
@@ -26,10 +22,10 @@
     <div class="relative flex-1">
       <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-indigo-800 to-transparent z-10"></div>
       <div class="flex whitespace-nowrap gap-12 animate-[scroll-left_25s_linear_infinite] pl-64">
-        <span class="hover:opacity-90 cursor-pointer">🚜 MilkSetu connects over 1,000 villages with dairy hubs!</span>
-        <span class="hover:opacity-90 cursor-pointer">💼 New business support services launched for rural entrepreneurs.</span>
-        <span class="hover:opacity-90 cursor-pointer">📦 Cold-chain logistics pilot begins in 3 districts.</span>
-        <span class="hover:opacity-90 cursor-pointer">📱 Mobile app launching soon for milk tracking & payments.</span>
+        <span>🚜 MilkSetu connects 1,000+ villages with dairy hubs!</span>
+        <span>💼 Business support services launched for rural entrepreneurs.</span>
+        <span>📦 Cold-chain logistics pilot begins in 3 districts.</span>
+        <span>📱 Mobile app launching soon for tracking & payments.</span>
       </div>
     </div>
   </div>
@@ -49,7 +45,7 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="hero" class="py-16 text-center bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100">
     <div class="container mx-auto px-6">
       <h2 class="text-4xl font-bold text-blue-900 mb-4">Connecting Rural India to Dairy Opportunities</h2>
@@ -97,22 +93,18 @@
           <p>Manage and track your delivery routes with real-time map location support.</p>
         </div>
       </div>
-      <div class="mt-10 text-center">
-        <h4 class="text-2xl font-semibold text-blue-700 mb-2">Live Tracking Map</h4>
-        <iframe class="mx-auto w-full max-w-3xl h-64 rounded border" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609999958!2d72.74109835000001!3d19.082522300000012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63be2be62ff%3A0x2cf3c51ebfa4b34f!2sMumbai!5e0!3m2!1sen!2sin!4v1617889529166!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
-      </div>
     </div>
   </section>
 
-  <!-- Contact & Footer -->
+  <!-- Contact -->
   <section id="contact" class="bg-gradient-to-r from-indigo-900 to-purple-900 text-white py-10">
     <div class="container mx-auto px-6 text-center">
       <h4 class="text-2xl font-bold mb-4">Stay Connected</h4>
       <p>Follow us on social media:</p>
       <div class="flex justify-center gap-6 mt-4">
-        <a href="https://www.facebook.com/share/163TQbzsFd/" class="hover:text-yellow-300">Facebook</a>
-        <a href="https://www.instagram.com/aarav_alok86?igsh=MTBqeGwzOHRvdnkzeQ==" class="hover:text-yellow-300">Instagram</a>
-        <a href="https://www.linkedin.com/in/alok-kumar-785762295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-yellow-300">LinkedIn</a>
+        <a href="#" class="hover:text-yellow-300">Facebook</a>
+        <a href="#" class="hover:text-yellow-300">Instagram</a>
+        <a href="#" class="hover:text-yellow-300">LinkedIn</a>
       </div>
     </div>
     <p class="text-center text-sm mt-6">&copy; Developed by Alok. 2025 MilkSetu. All rights reserved.</p>
@@ -120,13 +112,15 @@
 
   <!-- Auth Modal -->
   <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-md overflow-y-auto max-h-screen">
       <h3 class="text-2xl font-bold text-center text-blue-700 mb-4" id="authTitle">Login</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" required id="nameField" />
-        <input type="email" placeholder="Email Address" class="w-full p-3 border rounded" required />
-        <input type="password" placeholder="Password" class="w-full p-3 border rounded" required />
-        <select class="w-full p-3 border rounded" required>
+      <form id="authForm" action="login.php" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Full Name" class="w-full p-3 border rounded hidden" id="nameField" />
+        <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border rounded" required />
+        <input type="password" name="password" placeholder="Password" class="w-full p-3 border rounded" required />
+        <input type="tel" name="phone" placeholder="Phone Number" class="w-full p-3 border rounded hidden" id="phoneField" />
+        <input type="text" name="address" placeholder="Address" class="w-full p-3 border rounded hidden" id="addressField" />
+        <select name="role" class="w-full p-3 border rounded" id="roleField" required>
           <option value="">Select Role</option>
           <option value="client">Client</option>
           <option value="seller">Seller</option>
@@ -144,14 +138,29 @@
     function toggleAuthModal(type) {
       const modal = document.getElementById('authModal');
       const title = document.getElementById('authTitle');
+      const form = document.getElementById('authForm');
+
       const nameField = document.getElementById('nameField');
+      const phoneField = document.getElementById('phoneField');
+      const addressField = document.getElementById('addressField');
+      const roleField = document.getElementById('roleField');
+
       if (type === 'signup') {
         title.innerText = 'Register';
-        nameField.style.display = 'block';
-      } else {
+        form.action = 'signup.php';
+        nameField.classList.remove('hidden');
+        phoneField.classList.remove('hidden');
+        addressField.classList.remove('hidden');
+        roleField.classList.remove('hidden');
+      } else if (type === 'login') {
         title.innerText = 'Login';
-        nameField.style.display = 'none';
+        form.action = 'login.php';
+        nameField.classList.add('hidden');
+        phoneField.classList.add('hidden');
+        addressField.classList.add('hidden');
+        roleField.classList.remove('hidden'); // show role at login time also
       }
+
       modal.classList.toggle('hidden');
     }
   </script>

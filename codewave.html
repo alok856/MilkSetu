@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code-Wave | Learn & Grow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f0f4ff, #fff1f2); }
+    nav { position: fixed; top: 0; width: 100%; background: linear-gradient(to right, #0f172a, #2563eb); color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+    nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; flex-wrap: wrap; }
+    nav a, nav button { color: white; text-decoration: none; font-weight: bold; transition: color 0.3s; background: none; border: none; cursor: pointer; font-size: 16px; }
+    nav a:hover, nav button:hover { color: #38bdf8; }
+
+    section { padding: 100px 20px 50px; text-align: center; }
+    .hero { position: relative; height: 400px; overflow: hidden; }
+    .hero img { position: absolute; top: 0; left: 0; width: 100%; height: 400px; object-fit: cover; opacity: 0; transition: opacity 1s; }
+    .hero img.active { opacity: 1; }
+
+    .course-cards, .feature-cards { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+    .card { background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); width: 250px; overflow: hidden; transition: transform 0.3s; }
+    .card:hover { transform: translateY(-8px); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card h3 { margin: 10px 0; }
+    .card p { padding: 0 10px 10px; color: #555; }
+
+    input, button, textarea, select { padding: 12px; margin: 10px; width: 80%; max-width: 320px; border-radius: 6px; border: 1px solid #ccc; }
+    button.submit-btn { cursor: pointer; background: linear-gradient(to right, #2563eb, #38bdf8); color: white; border: none; transition: transform 0.3s; }
+    button.submit-btn:hover { transform: scale(1.05); }
+
+    footer { background: #0f172a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+
+    .review-box { display: inline-block; background: white; padding: 15px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 260px; transition: transform 0.3s; }
+    .review-box:hover { transform: scale(1.05); }
+    textarea { height: 80px; resize: none; }
+
+    .hidden { display: none; }
+    .stars { display: flex; justify-content: center; cursor: pointer; }
+    .stars i { font-size: 30px; color: gray; transition: color 0.3s; }
+    .stars i.selected, .stars i.hovered { color: gold; }
+
+    @media (max-width: 768px) {
+      .course-cards, .feature-cards { flex-direction: column; align-items: center; }
+      nav ul { justify-content: center; }
+      .hero { height: 250px; }
+      .hero img { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">🚀 Code-Wave</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><button onclick="showSection('signup')">Signup</button></li>
+      <li><button onclick="showSection('login')">Login</button></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="hero">
+    <img src="https://source.unsplash.com/1600x500/?coding" class="active" alt="Hero 1">
+    <img src="https://source.unsplash.com/1600x501/?developer" alt="Hero 2">
+    <img src="https://source.unsplash.com/1600x502/?programming" alt="Hero 3">
+    <img src="https://source.unsplash.com/1600x503/?startup" alt="Hero 4">
+    <img src="https://source.unsplash.com/1600x504/?laptop" alt="Hero 5">
+  </section>
+
+  <section id="courses">
+    <h2>🔥 Our Courses</h2>
+    <div class="course-cards">
+      <div class="card"><img src="https://source.unsplash.com/400x300/?fullstack" alt=""><h3>Full Stack Batch</h3><p>Master frontend & backend. Build full products.</p></div>
+      <div class="card"><img src="https://source.unsplash.com/400x301/?algorithm" alt=""><h3>DSA Masterclass</h3><p>Crack interviews with strong problem solving.</p></div>
+      <div class="card"><img src="https://source.unsplash.com/400x302/?mobile" alt=""><h3>Android Dev</h3><p>Create beautiful Android apps in Kotlin.</p></div>
+      <div class="card"><img src="https://source.unsplash.com/400x303/?ai" alt=""><h3>AI & ML Basics</h3><p>Start your journey in Artificial Intelligence.</p></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>🚀 Our Features</h2>
+    <div class="feature-cards">
+      <div class="card"><img src="https://source.unsplash.com/400x304/?mentorship" alt=""><h3>1:1 Mentorship</h3><p>Personal guidance from industry experts.</p></div>
+      <div class="card"><img src="https://source.unsplash.com/400x305/?project" alt=""><h3>Real Projects</h3><p>Build real, live projects to showcase skills.</p></div>
+      <div class="card"><img src="https://source.unsplash.com/400x306/?community" alt=""><h3>Strong Community</h3><p>Connect & learn with global developers.</p></div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <h2>💬 Student Reviews</h2>
+    <div id="reviewContainer"></div>
+    <h3>✍️ Write your review</h3>
+    <textarea id="user_review" placeholder="Write your review here..."></textarea><br>
+    <div class="stars" id="starContainer">
+      <i onclick="setStars(1)">★</i>
+      <i onclick="setStars(2)">★</i>
+      <i onclick="setStars(3)">★</i>
+      <i onclick="setStars(4)">★</i>
+      <i onclick="setStars(5)">★</i>
+    </div><br>
+    <button class="submit-btn" onclick="addReview()">Submit Review</button>
+  </section>
+
+  <section id="signup" class="hidden">
+    <h2>📝 Signup</h2>
+    <form onsubmit="return signupUser(event)">
+      <input type="text" id="s_name" placeholder="Name" required><br>
+      <input type="email" id="s_email" placeholder="Email" required><br>
+      <input type="password" id="s_password" placeholder="Password" required><br>
+      <input type="text" id="s_mobile" placeholder="Mobile Number" required><br>
+      <input type="text" id="s_address" placeholder="Address" required><br>
+      <button type="submit" class="submit-btn">Signup & Select Course</button>
+    </form>
+  </section>
+
+  <section id="courseSelect" class="hidden">
+    <h2>🎓 Select Your Course</h2>
+    <form onsubmit="return selectCourse(event)">
+      <select id="user_course" required>
+        <option value="">--Select Course--</option>
+        <option value="Full Stack Batch">Full Stack Batch</option>
+        <option value="DSA Masterclass">DSA Masterclass</option>
+        <option value="Android Dev">Android Dev</option>
+        <option value="AI & ML Basics">AI & ML Basics</option>
+      </select><br>
+      <button type="submit" class="submit-btn">Save & Login</button>
+    </form>
+  </section>
+
+  <section id="login" class="hidden">
+    <h2>🔑 Login</h2>
+    <form onsubmit="return loginUser(event)">
+      <input type="email" id="l_email" placeholder="Email" required><br>
+      <input type="password" id="l_password" placeholder="Password" required><br>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+  </section>
+
+  <section id="batch" class="hidden">
+    <h2>✅ My Batch</h2>
+    <p id="batch_info"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Code-Wave | Developed with ❤️ by Code-Wave Dev Team</p>
+  </footer>
+
+  <script>
+    let heroImages = document.querySelectorAll(".hero img");
+    let index = 0;
+    setInterval(() => {
+      heroImages[index].classList.remove("active");
+      index = (index + 1) % heroImages.length;
+      heroImages[index].classList.add("active");
+    }, 3000);
+
+    let users = {};
+    let currentUser = null;
+    let selectedStars = 0;
+
+    function showSection(sectionId) {
+      ["signup", "login", "batch", "courseSelect"].forEach(id => document.getElementById(id).classList.add("hidden"));
+      document.getElementById(sectionId).classList.remove("hidden");
+      window.scrollTo(0, document.getElementById(sectionId).offsetTop - 80);
+    }
+
+    function signupUser(e) {
+      e.preventDefault();
+      const name = document.getElementById("s_name").value;
+      const email = document.getElementById("s_email").value;
+      const password = document.getElementById("s_password").value;
+      const mobile = document.getElementById("s_mobile").value;
+      const address = document.getElementById("s_address").value;
+
+      users[email] = { name, email, password, mobile, address, course: "" };
+      currentUser = email;
+
+      showSection("courseSelect");
+    }
+
+    function selectCourse(e) {
+      e.preventDefault();
+      const course = document.getElementById("user_course").value;
+      if (currentUser && course) {
+        users[currentUser].course = course;
+        alert("Course selected! Now please login.");
+        showSection("login");
+      }
+    }
+
+    function loginUser(e) {
+      e.preventDefault();
+      const email = document.getElementById("l_email").value;
+      const password = document.getElementById("l_password").value;
+
+      if (users[email] && users[email].password === password) {
+        currentUser = email;
+        document.getElementById("batch_info").innerHTML = `
+          Welcome, <strong>${users[email].name}</strong>!<br>
+          Your Selected Course: <strong>${users[email].course}</strong>
+        `;
+        showSection("batch");
+      } else {
+        alert("Invalid email or password!");
+      }
+    }
+
+    function setStars(count) {
+      selectedStars = count;
+      const stars = document.querySelectorAll("#starContainer i");
+      stars.forEach((star, index) => {
+        if (index < count) {
+          star.classList.add("selected");
+        } else {
+          star.classList.remove("selected");
+        }
+      });
+    }
+
+    function addReview() {
+      const reviewText = document.getElementById("user_review").value.trim();
+      if (reviewText === "" || selectedStars === 0) {
+        alert("Please write a review and select stars!");
+        return;
+      }
+      const container = document.getElementById("reviewContainer");
+      const newReview = document.createElement("div");
+      newReview.className = "review-box";
+      let starsHtml = "★".repeat(selectedStars) + "☆".repeat(5 - selectedStars);
+      newReview.innerHTML = `<p>"${reviewText}"</p><div>${starsHtml}</div>`;
+      container.appendChild(newReview);
+      document.getElementById("user_review").value = "";
+      setStars(0);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MilkSetu – Empowering Rural India</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    @keyframes scroll-left {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-800">
+
+  <!-- Info Ticker -->
+  <div class="bg-gradient-to-r from-indigo-800 via-blue-800 to-purple-900 text-yellow-300 flex items-center overflow-hidden relative">
+    <div class="bg-gray-950 px-4 py-2 font-bold z-10">MilkSetu Updates:</div>
+    <div class="relative flex-1">
+      <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-indigo-800 to-transparent z-10"></div>
+      <div class="flex whitespace-nowrap gap-12 animate-[scroll-left_25s_linear_infinite] pl-64">
+        <span>🚜 MilkSetu connects 1,000+ villages with dairy hubs!</span>
+        <span>💼 Business support services launched for rural entrepreneurs.</span>
+        <span>📦 Cold-chain logistics pilot begins in 3 districts.</span>
+        <span>📱 Mobile app launching soon for tracking & payments.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white shadow-md py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 via-pink-500 to-purple-600 text-transparent bg-clip-text">Milk<span class="font-extrabold">-</span>Setu</h1>
+      <nav class="space-x-2 flex flex-wrap gap-2 text-sm md:text-base">
+        <a href="#hero" class="text-gray-700 hover:text-pink-600 font-medium">Home</a>
+        <a href="#services" class="text-gray-700 hover:text-purple-600 font-medium">Services</a>
+        <a href="#roles" class="text-gray-700 hover:text-blue-600 font-medium">Users</a>
+        <a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+        <button onclick="toggleAuthModal('login')" class="text-white bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 px-3 py-1 rounded hover:scale-105 transition">Login</button>
+        <button onclick="toggleAuthModal('signup')" class="text-white bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 px-3 py-1 rounded hover:scale-105 transition">Sign Up</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="py-16 text-center bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-blue-900 mb-4">Connecting Rural India to Dairy Opportunities</h2>
+      <p class="text-lg text-purple-800 max-w-2xl mx-auto mb-6">MilkSetu is a digital bridge enabling farmers, vendors, and rural entrepreneurs to scale their dairy business through technology and trust.</p>
+      <a href="#services" class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded hover:opacity-90 transition">Explore Our Services</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h3 class="text-3xl font-bold text-center text-pink-600 mb-10">Our Services</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-pink-100 p-6 rounded-lg shadow hover:bg-pink-200 transition">
+          <h4 class="text-xl font-semibold mb-2">Village Collection Centers</h4>
+          <p>Local hubs for milk collection and quality checks.</p>
+        </div>
+        <div class="bg-purple-100 p-6 rounded-lg shadow hover:bg-purple-200 transition">
+          <h4 class="text-xl font-semibold mb-2">Digital Payments</h4>
+          <p>Direct bank payments to farmers, improving transparency.</p>
+        </div>
+        <div class="bg-blue-100 p-6 rounded-lg shadow hover:bg-blue-200 transition">
+          <h4 class="text-xl font-semibold mb-2">Business Training</h4>
+          <p>Workshops on hygiene, profit, storage, and expansion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Roles -->
+  <section id="roles" class="py-16 bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
+    <div class="container mx-auto px-6">
+      <h3 class="text-3xl font-bold text-center text-blue-800 mb-10">Who Uses MilkSetu?</h3>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div class="bg-white p-6 shadow-md rounded hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-blue-700 mb-2">Clients</h4>
+          <p>Buy fresh dairy products from verified sellers directly through the platform.</p>
+        </div>
+        <div class="bg-white p-6 shadow-md rounded hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-purple-700 mb-2">Sellers</h4>
+          <p>Upload inventory, track orders, and get paid instantly after delivery.</p>
+        </div>
+        <div class="bg-white p-6 shadow-md rounded hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold text-pink-700 mb-2">Transporters</h4>
+          <p>Manage and track your delivery routes with real-time map location support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-gradient-to-r from-indigo-900 to-purple-900 text-white py-10">
+    <div class="container mx-auto px-6 text-center">
+      <h4 class="text-2xl font-bold mb-4">Stay Connected</h4>
+      <p>Follow us on social media:</p>
+      <div class="flex justify-center gap-6 mt-4">
+        <a href="#" class="hover:text-yellow-300">Facebook</a>
+        <a href="#" class="hover:text-yellow-300">Instagram</a>
+        <a href="#" class="hover:text-yellow-300">LinkedIn</a>
+      </div>
+    </div>
+    <p class="text-center text-sm mt-6">&copy; Developed by Alok. 2025 MilkSetu. All rights reserved.</p>
+  </section>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-md overflow-y-auto max-h-screen">
+      <h3 class="text-2xl font-bold text-center text-blue-700 mb-4" id="authTitle">Login</h3>
+      <form id="authForm" action="login.php" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Full Name" class="w-full p-3 border rounded hidden" id="nameField" />
+        <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border rounded" required />
+        <input type="password" name="password" placeholder="Password" class="w-full p-3 border rounded" required />
+        <input type="tel" name="phone" placeholder="Phone Number" class="w-full p-3 border rounded hidden" id="phoneField" />
+        <input type="text" name="address" placeholder="Address" class="w-full p-3 border rounded hidden" id="addressField" />
+        <select name="role" class="w-full p-3 border rounded" id="roleField" required>
+          <option value="">Select Role</option>
+          <option value="client">Client</option>
+          <option value="seller">Seller</option>
+          <option value="transporter">Transporter</option>
+        </select>
+        <div class="flex justify-between">
+          <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800">Submit</button>
+          <button type="button" onclick="toggleAuthModal()" class="text-red-600">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleAuthModal(type) {
+      const modal = document.getElementById('authModal');
+      const title = document.getElementById('authTitle');
+      const form = document.getElementById('authForm');
+
+      const nameField = document.getElementById('nameField');
+      const phoneField = document.getElementById('phoneField');
+      const addressField = document.getElementById('addressField');
+      const roleField = document.getElementById('roleField');
+
+      if (type === 'signup') {
+        title.innerText = 'Register';
+        form.action = 'signup.php';
+        nameField.classList.remove('hidden');
+        phoneField.classList.remove('hidden');
+        addressField.classList.remove('hidden');
+        roleField.classList.remove('hidden');
+      } else if (type === 'login') {
+        title.innerText = 'Login';
+        form.action = 'login.php';
+        nameField.classList.add('hidden');
+        phoneField.classList.add('hidden');
+        addressField.classList.add('hidden');
+        roleField.classList.remove('hidden'); // show role at login time also
+      }
+
+      modal.classList.toggle('hidden');
+    }
+  </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

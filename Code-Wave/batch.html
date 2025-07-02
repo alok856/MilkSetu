@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Batch | Code-Wave</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { margin: 0; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #f0f4ff, #fff1f2); text-align: center; }
+    .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+    button { margin-top: 20px; background: linear-gradient(to right, #2563eb, #38bdf8); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    button:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>✅ Welcome to Your Batch!</h2>
+    <p id="courseInfo"></p>
+    <button onclick="goHome()">Back to Home</button>
+  </div>
+
+<script>
+  const userName = localStorage.getItem("userName");
+  const course = localStorage.getItem("userCourse");
+  document.getElementById("courseInfo").innerHTML = `Hi <strong>${userName}</strong>!<br>Your enrolled course: <strong>${course}</strong>`;
+
+  function goHome() {
+    window.location.href = "index.html";
+  }
+</script>
+</body>
+</html>
