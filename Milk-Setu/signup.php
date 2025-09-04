@@ -2,10 +2,10 @@
 // signup.php
 
 // Database connection (update these values)
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "milksetu";
+$host = "sql311.infinityfree.com";
+$user = "if0_39390568";
+$password = "1dH1mjdhgOXL";
+$dbname = "if0_39390568_milksetu";
 
 // Create connection
 $conn = new mysqli($host, $user, $password, $dbname);

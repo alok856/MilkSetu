@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MyShop - Login & Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: #f4f4f4; }
+    .hidden { display: none; }
+
+    .form-container, .shop-container {
+      width: 100%;
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #f39c12;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover { background: #e67e22; }
+    .toggle-link {
+      text-align: center;
+      margin-top: 10px;
+      color: #3498db;
+      cursor: pointer;
+    }
+
+    /* Shop page styles */
+    nav {
+      background-color: #222;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo { font-size: 24px; font-weight: 600; }
+    nav .cart { position: relative; cursor: pointer; }
+    nav .cart span {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #f39c12;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 12px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .product {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s;
+    }
+    .product:hover { transform: scale(1.03); }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 15px;
+    }
+    .product-info h3 { font-size: 18px; margin-bottom: 10px; }
+    .product-info p { font-size: 14px; color: #555; margin-bottom: 10px; }
+    .product-info button {
+      padding: 10px;
+      background-color: #f39c12;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .product-info button:hover { background-color: #e67e22; }
+  </style>
+</head>
+<body>
+
+  <!-- Signup Form -->
+  <div class="form-container" id="signup-form">
+    <h2>Signup</h2>
+    <input type="text" id="signup-name" placeholder="Name" required />
+    <input type="email" id="signup-email" placeholder="Email" required />
+    <input type="password" id="signup-pass" placeholder="Password" required />
+    <button onclick="signup()">Signup</button>
+    <div class="toggle-link" onclick="showLogin()">Already have an account? Login</div>
+  </div>
+
+  <!-- Login Form -->
+  <div class="form-container hidden" id="login-form">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-pass" placeholder="Password" required />
+    <button onclick="login()">Login</button>
+    <div class="toggle-link" onclick="showSignup()">Don't have an account? Signup</div>
+  </div>
+
+  <!-- Shop Container -->
+  <div class="shop-container hidden" id="shop">
+    <nav>
+      <div class="logo">MyShop</div>
+      <div class="cart">🛒<span id="cart-count">0</span></div>
+    </nav>
+    <div class="container">
+      <div class="product">
+        <img src="https://source.unsplash.com/300x200/?shoe" alt="Product">
+        <div class="product-info">
+          <h3>Stylish Shoe</h3>
+          <p>Comfortable and trendy shoes for daily wear.</p>
+          <button onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://source.unsplash.com/300x200/?t-shirt" alt="Product">
+        <div class="product-info">
+          <h3>Casual T-Shirt</h3>
+          <p>Soft cotton t-shirt for a cool summer look.</p>
+          <button onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://source.unsplash.com/300x200/?bag" alt="Product">
+        <div class="product-info">
+          <h3>Travel Backpack</h3>
+          <p>Spacious and stylish backpack for all trips.</p>
+          <button onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://source.unsplash.com/300x200/?watch" alt="Product">
+        <div class="product-info">
+          <h3>Elegant Watch</h3>
+          <p>Perfect accessory to complete your outfit.</p>
+          <button onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let cartCount = 0;
+
+    function showLogin() {
+      document.getElementById('signup-form').classList.add('hidden');
+      document.getElementById('login-form').classList.remove('hidden');
+    }
+
+    function showSignup() {
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('signup-form').classList.remove('hidden');
+    }
+
+    function signup() {
+      // Basic fake validation
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const pass = document.getElementById('signup-pass').value;
+
+      if (name && email && pass) {
+        alert("Signup successful! Please login now.");
+        showLogin();
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-pass').value;
+
+      if (email && pass) {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('shop').classList.remove('hidden');
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+
+    function addToCart() {
+      cartCount++;
+      document.getElementById('cart-count').innerText = cartCount;
+    }
+  </script>
+</body>
+</html>

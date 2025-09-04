@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Choose Your Course</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .course-card {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .course-card h3 {
+      margin: 10px 0;
+    }
+
+    .course-card button {
+      margin: 10px;
+      padding: 8px 12px;
+      background: orange;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .success-message {
+      background: #dff0d8;
+      color: #3c763d;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      width: 90%;
+      max-width: 300px;
+    }
+
+    .form-popup input,
+    .form-popup button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-popup button {
+      background: orange;
+      color: #fff;
+      border: none;
+    }
+
+    .form-popup button:hover {
+      background: #d97706;
+    }
+
+    .home-btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .home-btn:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Welcome, <span id="userName"></span>! Select your course to enroll</h2>
+  <button class="home-btn" onclick="goHome()">🏠 Back to Home</button>
+
+  <div class="courses-grid">
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?web" alt="">
+      <h3>Web Development</h3>
+      <button onclick="openConfirm('Web Development')">Enroll</button>
+    </div>
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?app" alt="">
+      <h3>App Development</h3>
+      <button onclick="openConfirm('App Development')">Enroll</button>
+    </div>
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?ai" alt="">
+      <h3>AI & ML</h3>
+      <button onclick="openConfirm('AI & ML')">Enroll</button>
+    </div>
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?data" alt="">
+      <h3>Data Science</h3>
+      <button onclick="openConfirm('Data Science')">Enroll</button>
+    </div>
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?cybersecurity" alt="">
+      <h3>Cyber Security</h3>
+      <button onclick="openConfirm('Cyber Security')">Enroll</button>
+    </div>
+    <div class="course-card">
+      <img src="https://source.unsplash.com/300x200/?cloud" alt="">
+      <h3>Cloud Computing</h3>
+      <button onclick="openConfirm('Cloud Computing')">Enroll</button>
+    </div>
+  </div>
+
+  <div id="successMsg"></div>
+
+  <div class="form-popup" id="confirmForm">
+    <h3>Confirm Enrollment</h3>
+    <input type="password" id="confirmPassword" placeholder="Enter your password">
+    <button id="confirmEnrollBtn">Confirm Enroll</button>
+    <button onclick="closeConfirm()">Cancel</button>
+  </div>
+
+  <script>
+    const userName = localStorage.getItem("username");
+    const userId = localStorage.getItem("user_id");
+    const userPass = localStorage.getItem("userpass");
+    document.getElementById("userName").textContent = userName ? userName : "Guest";
+
+    let selectedCourse = "";
+
+    function openConfirm(course) {
+      selectedCourse = course;
+      document.getElementById("confirmForm").style.display = "block";
+      document.getElementById("confirmPassword").value = "";
+    }
+
+    function closeConfirm() {
+      document.getElementById("confirmForm").style.display = "none";
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+
+    function goBack() {
+      location.reload();
+    }
+
+    document.getElementById("confirmEnrollBtn").addEventListener("click", () => {
+      const enteredPass = document.getElementById("confirmPassword").value;
+      if (enteredPass === userPass) {
+        fetch("enroll.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `user_id=${encodeURIComponent(userId)}&course=${encodeURIComponent(selectedCourse)}`
+        })
+          .then(res => res.text())
+          .then(data => {
+            if (data === "success") {
+              const msgDiv = document.getElementById("successMsg");
+              msgDiv.innerHTML = `<div class="success-message">🎉 Hi ${userName}! You have successfully enrolled in ${selectedCourse}.<br><button onclick="goBack()" style="margin-top:10px;padding:6px 12px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;">Back</button></div>`;
+              closeConfirm();
+            } else {
+              alert("Enrollment failed. Try again!");
+            }
+          });
+      } else {
+        alert("Invalid password! Please try again.");
+      }
+    });
+  </script>
+</body>
+
+</html>
